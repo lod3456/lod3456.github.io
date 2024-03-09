@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchBingoWords() {
     const response = await fetch('bingo-words.txt');
     const text = await response.text();
-    return text.split('\n').filter(Boolean); // Removes empty lines
+    return text.split('\n').filter(Boolean);
 }
 
 function generateBingoBoard(size, words) {
     const board = document.getElementById('bingoBoard');
+    board.innerHTML = ''; // Clear board before generating new
     const shuffledWords = shuffleArray(words).slice(0, size * size);
 
     for (let i = 0; i < size; i++) {
@@ -21,7 +22,15 @@ function generateBingoBoard(size, words) {
             const box = document.createElement('div');
             box.classList.add('box');
             box.textContent = shuffledWords[boxIndex];
-            box.addEventListener('click', () => toggleBox(box));
+            box.dataset.row = i.toString();
+            box.dataset.column = j.toString();
+            box.addEventListener('click', function() {
+                this.classList.toggle('active');
+                if (checkForWin(size)) {
+                    const currentTime = new Date().toLocaleTimeString();
+                    alert(`You are the winner! Time: ${currentTime}`);
+                }
+            });
             board.appendChild(box);
         }
     }
@@ -35,6 +44,21 @@ function shuffleArray(array) {
     return array;
 }
 
-function toggleBox(box) {
-    box.classList.toggle('active');
+function checkForWin(size) {
+    let rows = Array(size).fill(0);
+    let cols = Array(size).fill(0);
+
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            const box = document.querySelector(`.box[data-row="${i}"][data-column="${j}"]`);
+            if (box.classList.contains('active')) {
+                rows[i]++;
+                cols[j]++;
+                if (rows[i] === size || cols[j] === size) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
