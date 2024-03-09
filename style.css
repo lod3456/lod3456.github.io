@@ -24,14 +24,16 @@ body {
     align-items: center;
     justify-content: center;
     height: 100px;
-    background-color: #f0f0f0; /* Light grey background */
-    color: #333; /* Dark text for contrast */
+    background-color: #f0f0f0;
+    color: #333;
     cursor: pointer;
     user-select: none;
-    font-size: 16px; /* Example font size */
-    border: 2px solid transparent; /* For a subtle border effect on active */
-    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for interaction */
+    font-size: 16px;
+    font-family: 'Fredoka One', cursive; /* Apply the cartoon font */
+    border: 2px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
 }
+
 
 .box:hover {
     background-color: #e0e0e0; /* Slightly darker on hover */
