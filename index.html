@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Bingo Game</title>
-    <!-- Google Fonts Link for Cartoon Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-    <!-- Link to Your CSS File -->
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div id="bingoBoard" class="bingo-board"></div>
+
+<!-- Winning Modal -->
+<div id="winningModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Congratulations! You are the winner!</p>
+        <img src="images/image.jpg" alt="Winning Image" class="winning-image">
+        <p id="winTime"></p>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
