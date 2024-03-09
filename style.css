@@ -2,45 +2,53 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('images/background.jpg');
-    background-size: cover; /* Cover the entire page */
-    background-position: center; /* Center the background image */
-    font-family: Arial, sans-serif; /* Example font */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
 }
 
 .bingo-board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    max-width: 500px;
-    margin: 40px auto;
+    max-width: 90%; /* Adjusted for responsiveness */
+    margin: 20px auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
-    border-radius: 10px; /* Rounded corners for the board */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .box {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    height: 80px; /* Adjusted for smaller screens */
     background-color: #f0f0f0;
     color: #333;
     cursor: pointer;
     user-select: none;
-    font-size: 16px;
-    font-family: 'Fredoka One', cursive; /* Apply the cartoon font */
+    font-size: 14px; /* Adjusted for readability on smaller screens */
+    font-family: 'Fredoka One', cursive;
     border: 2px solid transparent;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-
-.box:hover {
-    background-color: #e0e0e0; /* Slightly darker on hover */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .box {
+        height: 60px; /* Smaller boxes for narrower screens */
+        font-size: 12px; /* Smaller font size for readability */
+    }
 }
 
-.active {
-    background-color: #4CAF50; /* Green background for active boxes */
-    color: white; /* White text for contrast */
-    border-color: #3e8e41; /* Darker green border for depth */
+@media (max-width: 480px) {
+    .bingo-board {
+        grid-template-columns: repeat(3, 1fr); /* Simplify the grid for very small screens */
+    }
+
+    .box {
+        height: 50px;
+        font-size: 10px;
+    }
 }
