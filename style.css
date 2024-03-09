@@ -1,9 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('images/background.jpg');
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    font-family: Arial, sans-serif; /* Example font */
+}
+
 .bingo-board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     max-width: 500px;
-    margin: 20px auto;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
+    border-radius: 10px; /* Rounded corners for the board */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .box {
@@ -11,11 +24,21 @@
     align-items: center;
     justify-content: center;
     height: 100px;
-    background-color: #ddd;
+    background-color: #f0f0f0; /* Light grey background */
+    color: #333; /* Dark text for contrast */
     cursor: pointer;
     user-select: none;
+    font-size: 16px; /* Example font size */
+    border: 2px solid transparent; /* For a subtle border effect on active */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for interaction */
+}
+
+.box:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
 }
 
 .active {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Green background for active boxes */
+    color: white; /* White text for contrast */
+    border-color: #3e8e41; /* Darker green border for depth */
 }
