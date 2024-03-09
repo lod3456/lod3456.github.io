@@ -1,0 +1,21 @@
+.bingo-board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: #ddd;
+    cursor: pointer;
+    user-select: none;
+}
+
+.active {
+    background-color: #4CAF50;
+}
