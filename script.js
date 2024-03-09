@@ -1,22 +1,41 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('bingo-words.txt')
-        .then(response => response.text())
-        .then(text => {
-            const items = text.split('\n');
-            generateBingoGrid(items);
-        });
-
-    document.getElementById('background-selector').addEventListener('change', function() {
-        document.body.style.backgroundImage = `url('images/background.jpg')`;
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    const boardSize = 5; // 5x5 Bingo board
+    generateBingoBoard(boardSize);
 });
 
-function generateBingoGrid(items) {
-    const container = document.getElementById('bingo-container');
-    for (let i = 0; i < 25; i++) { // 5x5 Grid
-        const cell = document.createElement('div');
-        cell.className = 'bingo-cell';
-        cell.textContent = items[Math.floor(Math.random() * items.length)];
-        container.appendChild(cell);
+function generateBingoBoard(size) {
+    const board = document.getElementById('bingoBoard');
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            const box = document.createElement('div');
+            box.classList.add('box');
+            box.id = `box-${i}-${j}`;
+            box.addEventListener('click', () => toggleBox(box));
+            board.appendChild(box);
+        }
     }
+}
+
+function toggleBox(box) {
+    box.classList.toggle('active');
+    checkForWin();
+}
+
+function checkForWin() {
+    const size = 5;
+    let win = false;
+
+    // Check rows
+    for (let i = 0; i < size && !win; i++) {
+        win = [...Array(size).keys()].every(j => document.getElementById(`box-${i}-${j}`).classList.contains('active'));
+        if (win) break;
+    }
+
+    // Check columns
+    for (let j = 0; j < size && !win; j++) {
+        win = [...Array(size).keys()].every(i => document.getElementById(`box-${i}-${j}`).classList.contains('active'));
+        if (win) break;
+    }
+
+    if (win) alert("You are the winner!");
 }
