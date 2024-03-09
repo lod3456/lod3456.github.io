@@ -4,51 +4,58 @@ body {
     background-image: url('images/background.jpg');
     background-size: cover;
     background-position: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Fredoka One', cursive; /* Ensure this matches the font you've chosen */
 }
 
 .bingo-board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    max-width: 90%; /* Adjusted for responsiveness */
+    max-width: 90%;
+    padding: 10px;
     margin: 20px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .box {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px; /* Adjusted for smaller screens */
+    height: 60px;
     background-color: #f0f0f0;
     color: #333;
     cursor: pointer;
     user-select: none;
-    font-size: 14px; /* Adjusted for readability on smaller screens */
-    font-family: 'Fredoka One', cursive;
+    font-size: 14px;
     border: 2px solid transparent;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: transform 0.3s ease, background-color 0.3s;
 }
 
-/* Responsive adjustments */
+.box:hover {
+    transform: scale(1.05);
+}
+
+.box.active {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #367b3a;
+}
+
 @media (max-width: 768px) {
     .box {
-        height: 60px; /* Smaller boxes for narrower screens */
-        font-size: 12px; /* Smaller font size for readability */
+        font-size: 12px;
+        height: 50px;
     }
 }
 
 @media (max-width: 480px) {
     .bingo-board {
-        grid-template-columns: repeat(3, 1fr); /* Simplify the grid for very small screens */
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .box {
-        height: 50px;
         font-size: 10px;
+        height: 40px;
     }
 }
